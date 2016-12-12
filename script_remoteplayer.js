@@ -13,8 +13,9 @@ function TwoPlayerGame() {
 	  xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	    	console.info(this.responseText);
+		    var row = JSON.parse(this.responseText);
 
-	    	that.action(1, function () {
+	    	that.action(row.rownumber, function () {
 				that.rejectClick = false;
             });
 	    }
