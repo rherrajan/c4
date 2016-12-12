@@ -106,7 +106,7 @@ function Game() {
         this.context.fillText(msg, 200, 20);
         this.context.restore();
 
-        console.info(msg);
+        //console.info(msg);
     };
     this.fillMap = function (state, column, value) {
         var tempMap = state.clone();
@@ -134,6 +134,7 @@ function Game() {
 
     this.action = function (column, callback) {
         if (this.paused || this.won) {
+            console.info("game paused");
             return 0;
         }
         if (this.map[0][column] !== 0 || column < 0 || column > 6) {
@@ -294,6 +295,7 @@ function Game() {
 
     this.onclick = function (canvas, e) {
         if (this.rejectClick) {
+            console.info("not your turn");
             return false;
         }
         if (this.won) {
@@ -495,7 +497,7 @@ function Game() {
         var choice_val = maxState(state, 0, -100000000007, 100000000007);
         choice = choice_val[1];
         var val = choice_val[0];
-        console.info("AI " + aiMoveValue + " choose column: " + choice + " (value: " + val + ")");
+        //console.info("AI " + aiMoveValue + " choose column: " + choice + " (value: " + val + ")");
 
         this.paused = false;
         var done = this.action(choice, function () {
