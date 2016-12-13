@@ -73,7 +73,7 @@ function Game() {
             }
             msg += "\n";
         }
-        console.log(msg);
+        // console.log(msg);
     };
 
     this.printState = function (state) {
@@ -312,15 +312,20 @@ function Game() {
             if (this.onregion([x, y], 75 * j + 100, 25)) {
                 // console.log("clicked region " + j);
                 this.paused = false;
-                valid = this.action(j, function () {
-                    that.ai(-1);
-                });
+                valid = that.onPlayerMove(j);
                 if (valid === 1) { // give user retry if action is invalid
                     this.rejectClick = true;
                 }
                 break; //because there will be no 2 points that are clicked at a time
             }
         }
+    };
+
+    this.onPlayerMove = function(column){
+        var valid = this.action(column, function () {
+            that.ai(-1);
+        });
+        return valid;
     };
 
     this.ai = function (aiMoveValue) {
