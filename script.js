@@ -522,3 +522,7 @@ function Game() {
     };
     this.init();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    this.game = new Game();
+});
